@@ -1,13 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import Select from './select'
+import AccountGoods from './account-goods'
 
-const Main = () => (
-    <Container>
-        <Title>
-            Wargochi token holders & details
-        </Title>
-    </Container>
-)
+// todo add state manager so Main doesn't re-render on account change
+const Main = () => {
+    const [account, setAccount] = useState("")
+
+    return (
+        <Container>
+            <Title>
+                Wargochi token holders & details
+            </Title>
+            <Select onChange={e => setAccount(e.target.value)}/>
+            <AccountGoods account={account} />
+        </Container>
+    )
+}
 
 const Container = styled.div`
     display: flex;
